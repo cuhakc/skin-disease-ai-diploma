@@ -14,6 +14,10 @@
 
 TODO(Amantai): Figma (or other) URL
 
+## Supported languages
+
+The required UI languages are Russian (RU), Kazakh (KK), and English (EN). Translation text and review are TODO(Amantai).
+
 ## Intended screens (from project description)
 
 | Screen | Purpose | Disclaimer visible | Notes / TODO |

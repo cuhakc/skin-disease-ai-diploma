@@ -1,6 +1,6 @@
 # Documentation
 
-Pre-defence analysis and design. Fill with **sourced** content or `TODO(owner)`. Empty tables are expected.
+Pre-defence analysis and design. Fill with sourced content or TODO(owner). Empty tables are expected. Use IEEE citation style throughout; do not invent sources or survey results. Supervisor: Akerke Akanova. YouTrack project key: DIP (Kanban); URL TODO.
 
 | File | Topic |
 |------|--------|
