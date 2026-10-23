@@ -1,0 +1,25 @@
+@startuml
+title System context — draft
+left to right direction
+
+actor "Person using the mobile app" as User
+rectangle "Mobile decision-support application" as App
+actor "Healthcare specialist" as Specialist
+
+User --> App : photographs or uploads skin image
+App --> User : preliminary classification
+class probabilities
+specialist recommendation
+medical disclaimer
+User ..> Specialist : consults when recommended
+
+note bottom of App
+  Decision support only.
+  Not a medical diagnosis.
+end note
+
+note right of Specialist
+  Outside the application.
+  No system integration or data sharing is specified.
+end note
+@enduml

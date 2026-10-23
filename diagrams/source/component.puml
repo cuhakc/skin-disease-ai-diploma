@@ -1,0 +1,39 @@
+@startuml
+title System components — draft
+left to right direction
+skinparam componentStyle rectangle
+
+actor "App user" as User
+
+package "Mobile decision-support system" {
+  component "Mobile application" as Mobile
+  component "API boundary" as API
+  component "Authentication" as Auth
+  component "Diagnosis orchestration" as Diagnosis
+  component "Inference interface" as Inference
+  component "Mock inference / future model" as Model
+  database "Persistence for user and history records" as Store
+}
+
+User --> Mobile : photo, login, history
+Mobile --> API : application requests
+API --> Auth : register / authenticate
+API --> Diagnosis : analysis / history requests
+Diagnosis --> Inference : preliminary classification request
+Inference --> Model : model input
+Model --> Inference : class probabilities
+Diagnosis --> Store : user and history records
+API --> Mobile : class, probabilities,
+specialist recommendation, disclaimer
+Mobile --> User : result and history
+
+note bottom of Inference
+  Inference deployment is undecided.
+  The mock/future adapter is a draft boundary.
+end note
+
+note bottom of Store
+  Database technology, image storage,
+  and retention are undecided.
+end note
+@enduml
