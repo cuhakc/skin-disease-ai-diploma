@@ -1,0 +1,60 @@
+@startuml
+' DIP-5 — draft relational data model
+hide circle
+skinparam linetype ortho
+
+title Backend ER diagram — draft
+
+entity "users" as users {
+  * id : UUID <<PK>>
+  --
+  email : string <<UNIQUE>>
+  password_hash : string
+  display_name : string
+  is_active : boolean
+  created_at : timestamp
+}
+
+entity "consents" as consents {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  consent_type : string
+  policy_version : string
+  granted_at : timestamp
+  revoked_at : timestamp, nullable
+}
+
+entity "disease_classes" as disease_classes {
+  * id : INT <<PK>>
+  --
+  code : string <<UNIQUE>>
+  name_en : string
+  name_ru : string
+  name_kk : string
+  risk_level : string
+  recommendation_text : string
+}
+
+entity "diagnosis_records" as diagnosis_records {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  predicted_class_id : INT <<FK, nullable>>
+  image_path : string
+  confidence : decimal
+  probabilities : JSONB
+  model_version : string
+  status : string
+  created_at : timestamp
+  deleted_at : timestamp, nullable
+}
+
+users ||--o{ consents : has
+users ||--o{ diagnosis_records : owns
+disease_classes |o--o{ diagnosis_records : classifies
+
+note right of disease_classes
+  TODO: class taxonomy to be agreed with AI module owner and supervisor
+end note
+@enduml

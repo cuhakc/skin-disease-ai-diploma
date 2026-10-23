@@ -1,0 +1,433 @@
+openapi: 3.0.3
+info:
+  title: Skin Disease AI Backend API
+  version: 0.1.0
+  description: >-
+    Draft v0.1.0 API for the Skin Disease AI diploma mobile application.
+    Results are preliminary decision support and are not a medical diagnosis.
+    Base URL, deployment, and several operational limits remain TODO.
+
+security:
+  - BearerAuth: []
+
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Check service health
+      description: Basic health response; availability target, monitoring, and recovery behavior are TODO under NFR-03.
+      security: []
+      responses:
+        '200':
+          description: Service health response
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  /auth/register:
+    post:
+      operationId: registerUser
+      summary: Register a user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '409':
+          description: Email is already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Request validation failed or consent was not granted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/login:
+    post:
+      operationId: loginUser
+      summary: Authenticate a user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Access token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Credentials are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get the authenticated user's profile
+      responses:
+        '200':
+          description: Current user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteCurrentUser
+      summary: Delete the authenticated user's account
+      description: >-
+        Deletes the account, its diagnosis records, and associated image files.
+        Physical deletion timing and any retention exceptions are TODO and must
+        be agreed before implementation.
+      responses:
+        '204':
+          description: Account and associated records/images deleted
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /classes:
+    get:
+      operationId: listDiseaseClasses
+      summary: List configured disease classes
+      responses:
+        '200':
+          description: Configured disease class catalogue
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiseaseClass'
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /diagnoses:
+    post:
+      operationId: createDiagnosis
+      summary: Submit an image for preliminary analysis
+      description: >-
+        Draft upload limit is 10 MB (10,000,000 bytes); TODO confirm the limit
+        and whether the intended unit is MB or MiB before implementation.
+        The response is decision support, not a medical diagnosis.
+      requestBody:
+        required: true
+        description: JPEG or PNG image. Draft size limit is 10 MB; confirm before implementation.
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [image]
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: JPEG or PNG image; draft 10 MB limit, TODO confirm.
+                  x-draftMaxBytes: 10000000
+            encoding:
+              image:
+                contentType: image/jpeg, image/png
+      responses:
+        '201':
+          description: Preliminary analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnosis'
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: Image exceeds the draft upload limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '415':
+          description: Image media type is not supported
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Image or request could not be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Inference service is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      operationId: listDiagnoses
+      summary: List the authenticated user's diagnosis history
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          description: Number of records to skip.
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: User's diagnosis history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Diagnosis'
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /diagnoses/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Diagnosis record UUID
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getDiagnosis
+      summary: Get one diagnosis record
+      description: Only the record owner can access it; a missing or foreign record returns 404.
+      responses:
+        '200':
+          description: Diagnosis record owned by the authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnosis'
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Record does not exist or is not owned by the authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDiagnosis
+      summary: Delete one diagnosis record
+      description: Only the record owner can delete it; a missing or foreign record returns 404.
+      responses:
+        '204':
+          description: Diagnosis record and associated image deleted
+        '401':
+          description: Authentication is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Record does not exist or is not owned by the authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [email, password, display_name, consent_data_processing]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+          minLength: 8
+        display_name:
+          type: string
+          description: User-selected display label; a legal name is not required.
+        consent_data_processing:
+          type: boolean
+          description: >-
+            Required explicit data-processing consent. Draft behavior: false
+            prevents registration and returns 422; confirm with the team.
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    TokenResponse:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          minimum: 1
+          description: Token lifetime in seconds; configured value TODO.
+
+    User:
+      type: object
+      required: [id, email, display_name, is_active, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        display_name:
+          type: string
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+
+    DiseaseClass:
+      type: object
+      required: [id, code, name_en, name_ru, name_kk, risk_level, recommendation_text]
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name_en:
+          type: string
+        name_ru:
+          type: string
+        name_kk:
+          type: string
+        risk_level:
+          type: string
+          description: Draft value; risk-level vocabulary is TODO.
+        recommendation_text:
+          type: string
+          description: Draft class-related recommendation text; taxonomy and approved wording are TODO.
+
+    Diagnosis:
+      type: object
+      required: [id, created_at, predicted_class, confidence, probabilities, model_version, recommendation, disclaimer]
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        predicted_class:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/DiseaseClass'
+          nullable: true
+          description: Null when no class was assigned.
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        probabilities:
+          type: object
+          description: Draft map from class code to probability; class taxonomy is TODO.
+          additionalProperties:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1
+        model_version:
+          type: string
+          description: Inference model version identifier.
+        recommendation:
+          type: string
+          description: Advice to see a specialist; approved final wording is TODO.
+        disclaimer:
+          type: string
+          description: Fixed non-diagnostic disclaimer required in every diagnosis response.
+          example: preliminary result, not a medical diagnosis
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
