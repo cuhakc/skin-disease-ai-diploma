@@ -2,7 +2,7 @@
 
 **Status:** criteria proposed; **system names and cells empty until sourced**.
 
-**Assessment use:** compare existing apps/systems against this diploma’s intended capabilities. Every filled cell must include a **source link**.
+**Assessment use:** compare existing apps/systems against this diploma’s intended capabilities. Every filled cell must include a **source link** and an IEEE citation number where applicable.
 
 ## Instructions
 
@@ -31,7 +31,7 @@ This project (for reference, not a competitor claim): mobile photo in → prelim
 | C3 | Output type | class label / probabilities / risk score / other | Quote the UI or docs |
 | C4 | History of past analyses | yes / no / not found | Account required? |
 | C5 | Referral / “see a specialist” recommendation | yes / no / not found | Distinguish from ads |
-| C6 | Language support | list languages evidenced | Include KK/RU/EN if claimed |
+| C6 | Language support | list languages evidenced | record RU, KK, and EN separately when those languages are evidenced |
 | C7 | Price | free / IAP / subscription / unknown | Date of check |
 | C8 | Clinical validation evidence | citation or “not found” | Trial, CE/FDA, etc. |
 | C9 | Privacy (photos, accounts, retention) | summary + policy URL | Do not invent GDPR claims |

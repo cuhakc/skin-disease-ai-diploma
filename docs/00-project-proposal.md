@@ -49,6 +49,6 @@ TODO(team): write only what the supervisor accepts. If unknown, leave blank.
 
 | Item | Value |
 |------|--------|
-| Supervisor | TODO(team): name |
+| Supervisor | Akerke Akanova |
 | Date of approval | TODO |
 | Pre-defence date | 24 October (year: confirm with department) |

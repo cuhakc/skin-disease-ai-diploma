@@ -8,13 +8,14 @@
 
 1. Freeze requirement IDs before locking a choice.
 2. Weights must sum to 1.0 per decision. Do not reverse-engineer scores to match a favourite.
-3. Record the date and who scored. Disagreements go in notes.
+3. Use a documented 1–5 scale (1 = least suitable, 5 = most suitable) unless the team agrees otherwise. Weighted total = sum of criterion weight multiplied by score.
+4. Record the date and who scored. Disagreements go in notes.
 
 **Proposed defaults (not chosen until tables are filled):** FastAPI, PostgreSQL, Flutter, PyTorch + TFLite/ONNX.
 
 ## Decision 1 — Model architecture
 
-**Requirement IDs:** TODO (e.g. FR for classification, NFR for accuracy/latency—IDs after `05` is drafted).
+**Requirement IDs:** FR-03, FR-04, NFR-01, NFR-04.
 
 | Criterion | Weight | Alt A: CNN (e.g. family TBD) | Alt B: ViT / hybrid TBD | Alt C: classical ML on handcrafted features |
 |-----------|--------|------------------------------|-------------------------|-----------------------------------------------|
@@ -28,7 +29,7 @@
 
 ## Decision 2 — Backend framework
 
-**Requirement IDs:** TODO (API, auth, OpenAPI).
+**Requirement IDs:** FR-01, FR-02, FR-03, FR-05, FR-06, FR-07, NFR-01, NFR-02, NFR-03.
 
 | Criterion | Weight | Alt A: FastAPI (proposed default) | Alt B: Django / Django REST | Alt C: Node.js (Nest/Express) |
 |-----------|--------|-----------------------------------|-----------------------------|-------------------------------|
@@ -42,7 +43,7 @@
 
 ## Decision 3 — Database
 
-**Requirement IDs:** TODO (persistence, history, access control).
+**Requirement IDs:** FR-05, NFR-02, NFR-03.
 
 | Criterion | Weight | Alt A: PostgreSQL (proposed default) | Alt B: SQLite | Alt C: MongoDB |
 |-----------|--------|--------------------------------------|---------------|----------------|
@@ -55,7 +56,7 @@
 
 ## Decision 4 — Mobile framework
 
-**Requirement IDs:** TODO (camera, upload, iOS/Android).
+**Requirement IDs:** FR-02, FR-08.
 
 | Criterion | Weight | Alt A: Flutter (proposed default) | Alt B: React Native | Alt C: native Kotlin + Swift |
 |-----------|--------|-----------------------------------|---------------------|------------------------------|
@@ -68,7 +69,7 @@
 
 ## Decision 5 — Model deployment (server vs on-device)
 
-**Requirement IDs:** TODO (latency, privacy, offline, model updates).
+**Requirement IDs:** FR-02, FR-03, FR-04, NFR-01, NFR-02, NFR-03, NFR-04.
 
 | Criterion | Weight | Alt A: server-side inference | Alt B: on-device (TFLite/ONNX) | Alt C: hybrid |
 |-----------|--------|------------------------------|--------------------------------|---------------|
@@ -81,6 +82,8 @@
 **Justification:** TODO(Arman+Sultan): pending scoring. Export formats TFLite/ONNX remain **proposed, pending this comparison**.
 
 ## Summary of locked choices
+
+No technology has been selected by this document. Record each decision only after scoring and review.
 
 | Decision | Choice | Date locked | Approved by |
 |----------|--------|-------------|-------------|

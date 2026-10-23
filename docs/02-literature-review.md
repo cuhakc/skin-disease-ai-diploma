@@ -13,7 +13,7 @@
 
 ## How to fill this document
 
-1. Search using the topics below; export bibtex/CSL later if the department requires a style (TODO: citation style).
+1. Use IEEE numbered in-text citations and an IEEE-formatted reference list. Search using the topics below; do not add a reference until it has been verified.
 2. One row per source. Copy numbers **from the paper**, never from memory.
 3. Limitations must come from the paper or from a clearly labelled team observation.
 
