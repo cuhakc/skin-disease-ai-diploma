@@ -1,0 +1,33 @@
+@startuml
+title Mobile decision-support application — use cases (draft)
+left to right direction
+
+actor "App user" as User
+
+rectangle "Mobile decision-support application" {
+  usecase "Register or sign in" as UCAuth
+  usecase "Capture or select photo" as UCPhoto
+  usecase "Request preliminary classification" as UCAnalyze
+  usecase "View class and probabilities" as UCResult
+  usecase "View specialist recommendation" as UCReferral
+  usecase "Read medical disclaimer" as UCDisclaimer
+  usecase "View analysis history" as UCHistory
+}
+
+User -- UCAuth
+User -- UCPhoto
+User -- UCAnalyze
+User -- UCResult
+User -- UCReferral
+User -- UCDisclaimer
+User -- UCHistory
+
+UCAnalyze .> UCPhoto : <<include>>
+UCResult .> UCReferral : <<include>>
+UCResult .> UCDisclaimer : <<include>>
+
+note bottom of UCAnalyze
+  Preliminary decision support.
+  Output is not a diagnosis.
+end note
+@enduml
