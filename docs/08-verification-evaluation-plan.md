@@ -22,11 +22,15 @@ Plan tests before implementation. Record datasets, split rules, and measurement 
 
 | Area | What will be tested | Method |
 |------|---------------------|--------|
-| Auth | register/login | automated |
-| Upload | type/size validation | automated |
-| Access control | user A cannot read user B | automated |
-| Disclaimer | present on diagnosis responses | automated + UI check |
-| History | list/detail/delete | automated |
+| Auth and consent | Register/login; persist consent type, policy version, and grant timestamp; reject false consent with HTTP 422 | Automated API and storage tests |
+| Upload | JPEG/PNG; draft 10 MB limit (TODO confirm); clear errors for unsupported, over-limit, invalid, or unreadable images | Automated API tests |
+| Access control | User A cannot read user B history or detail; foreign or missing record IDs return 404 | Automated API tests |
+| Class catalogue | `GET /classes` returns configured names and risk level; taxonomy and risk vocabulary remain TODO | API schema and integration review |
+| Profile | `GET /users/me` returns the authenticated user's profile; unauthenticated request returns 401 | Automated API tests |
+| History | List and retrieve only the authenticated user's records | Automated API tests |
+| Deletion | `DELETE /diagnoses/{id}` and `DELETE /users/me` make the associated records and images inaccessible; physical deletion timing TODO | API and storage integration tests |
+| Health | `GET /health` is the technical availability probe; target and observation window TODO | Probe check and availability measurement |
+| Disclaimer | Present on every diagnosis API response and result screen | Automated API test and UI check |
 
 ## Measurement conditions
 

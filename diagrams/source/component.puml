@@ -9,23 +9,41 @@ package "Mobile decision-support system" {
   component "Mobile application" as Mobile
   component "API boundary" as API
   component "Authentication" as Auth
+  component "Consent storage" as ConsentStore
+  component "Disease-class catalogue" as ClassCatalogue
   component "Diagnosis orchestration" as Diagnosis
   component "Inference interface" as Inference
   component "Mock inference / future model" as Model
-  database "Persistence for user and history records" as Store
+  component "Account and record deletion flow" as Deletion
+  component "Image file storage" as ImageStore
+  database "Relational persistence\n(users, consents, classes, diagnosis records)" as Store
 }
 
-User --> Mobile : photo, login, history
+User --> Mobile : photo, login, history, profile
 Mobile --> API : application requests
 API --> Auth : register / authenticate
+Auth --> ConsentStore : record consent metadata
+ConsentStore --> Store : persist consent
+API --> ClassCatalogue : GET /classes
+ClassCatalogue --> Store : read class catalogue
 API --> Diagnosis : analysis / history requests
 Diagnosis --> Inference : preliminary classification request
 Inference --> Model : model input
 Model --> Inference : class probabilities
-Diagnosis --> Store : user and history records
-API --> Mobile : class, probabilities,
-specialist recommendation, disclaimer
-Mobile --> User : result and history
+Diagnosis --> Store : diagnosis metadata / history
+Diagnosis --> ImageStore : save and read image files
+API --> Deletion : DELETE account / diagnosis
+Deletion --> Store : delete user / diagnosis records
+Deletion --> ImageStore : delete associated images
+API --> Mobile : classes, profile, results, history
+Mobile --> User : result, history, profile
+
+note top of API
+  Cross-cutting security controls:
+  authentication and owner authorization;
+  rate limiting on login and upload;
+  MIME, size, and decoded-image validation.
+end note
 
 note bottom of Inference
   Inference deployment is undecided.
@@ -33,7 +51,13 @@ note bottom of Inference
 end note
 
 note bottom of Store
-  Database technology, image storage,
-  and retention are undecided.
+  Database technology is undecided.
+  Consent storage and class catalogue are logical responsibilities;
+  their physical schema and implementation remain draft.
+end note
+
+note bottom of ImageStore
+  Storage location, retention, and physical deletion timing are TODO.
+  Store outside the web root in deployment.
 end note
 @enduml

@@ -5,23 +5,38 @@ left to right direction
 actor "App user" as User
 
 rectangle "Mobile decision-support application" {
-  usecase "Register or sign in" as UCAuth
+  usecase "Register" as UCRegister
+  usecase "Sign in" as UCLogin
+  usecase "Grant data-processing consent" as UCConsent
   usecase "Capture or select photo" as UCPhoto
   usecase "Request preliminary classification" as UCAnalyze
   usecase "View class and probabilities" as UCResult
   usecase "View specialist recommendation" as UCReferral
   usecase "Read medical disclaimer" as UCDisclaimer
   usecase "View analysis history" as UCHistory
+  usecase "View one analysis record" as UCRecord
+  usecase "Retrieve class catalogue\n(names and risk levels)" as UCClasses
+  usecase "Read own profile" as UCProfile
+  usecase "Delete one analysis and its image" as UCDeleteRecord
+  usecase "Delete account and all\nrecords and images" as UCDeleteAccount
 }
 
-User -- UCAuth
+User -- UCRegister
+User -- UCLogin
+User -- UCConsent
 User -- UCPhoto
 User -- UCAnalyze
 User -- UCResult
 User -- UCReferral
 User -- UCDisclaimer
 User -- UCHistory
+User -- UCRecord
+User -- UCClasses
+User -- UCProfile
+User -- UCDeleteRecord
+User -- UCDeleteAccount
 
+UCRegister .> UCConsent : <<include>>
 UCAnalyze .> UCPhoto : <<include>>
 UCResult .> UCReferral : <<include>>
 UCResult .> UCDisclaimer : <<include>>
@@ -29,5 +44,9 @@ UCResult .> UCDisclaimer : <<include>>
 note bottom of UCAnalyze
   Preliminary decision support.
   Output is not a diagnosis.
+end note
+
+note bottom of UCDeleteAccount
+  Physical deletion timing remains TODO.
 end note
 @enduml
