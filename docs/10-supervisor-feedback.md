@@ -45,3 +45,23 @@ Tick only when artefacts exist and have actually been reviewed.
 | Action | Owner | Due | Status |
 |--------|-------|-----|--------|
 | | | | |
+
+
+## Letter to the supervisor
+
+**Date sent:** TODO(Amantay): date and channel (email/messenger)
+
+**To:** Akerke Akanova
+
+**Content:**
+Repository: https://github.com/cuhakc/skin-disease-ai-diploma
+Materials: project proposal (docs/00), requirements (docs/05), existing systems (docs/03), UX prototype (docs/07).
+
+Questions:
+1. Is the survey (n=20) accepted as evidence of relevance instead of 3–5 interviews?
+2. Do you agree with the scope and the number of classes?
+3. Please share any comments on the submitted materials.
+
+## Supervisor reply
+
+TODO: no reply yet. Record the date and the reply text or summary when received. Do not fill in before a real reply.
