@@ -54,18 +54,26 @@
 
 **Justification:** TODO(Sultan): pending scoring.
 
-## Decision 4 — Mobile framework
+## Mobile framework
 
-**Requirement IDs:** FR-02, FR-08.
+**Decision:** which framework to use for the Android/iOS client that captures a photo, sends it to the backend and shows the result.
 
-| Criterion | Weight | Alt A: Flutter (proposed default) | Alt B: React Native | Alt C: native Kotlin + Swift |
-|-----------|--------|-----------------------------------|---------------------|------------------------------|
-| TODO: one codebase | | | | |
-| TODO: camera/gallery APIs | | | | |
-| TODO: team skill | | | | |
-| **Weighted total** | 1.00 | | | |
+**Alternatives:** Flutter, React Native, native Android (Kotlin).
 
-**Justification:** TODO(Amantai): pending scoring.
+**Criteria:** cross-platform support, camera and gallery access, integration with a REST API, development speed for a small team, team experience, ability to run a model on the device later.
+
+| Criterion | Flutter | React Native | Kotlin (native Android) |
+|---|---|---|---|
+| Cross-platform (Android + iOS) | Yes, one codebase | Yes, one codebase | Android only |
+| Camera and gallery | Official plugins | Community and Expo libraries | Native APIs |
+| REST API integration | HTTP packages | fetch / axios | Retrofit and similar |
+| Development speed for a small team | High | High | Lower: a second app is needed for iOS |
+| Team experience | TODO: confirm with the team | TODO: confirm with the team | TODO: confirm with the team |
+| On-device inference later | TODO: verify the available TFLite plugin | TODO: verify the available library | Native TFLite support |
+
+**Conclusion:** [fill in the framework actually used in mobile/]. Reason: a single codebase for both platforms and sufficient camera and network support. Open question: on-device inference is out of the current scope; server-side inference is assumed (see the deployment section by Arman).
+
+**Limitations:** the comparison is based on the official documentation, no benchmarks were run; performance on the device: TODO: measure.
 
 ## Decision 5 — Model deployment (server vs on-device)
 
