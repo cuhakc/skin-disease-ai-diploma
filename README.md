@@ -37,7 +37,7 @@ TODO(team): Record implementation and evaluation outcomes only after the work ha
 |------|------|----------------|
 | Student 1 | Arman | AI module: dataset evaluation, model training, quality report |
 | Student 2 | Sultan | Backend: architecture, REST API, database, security |
-| Student 3 | Amantai | Mobile app: UI, photo capture/upload, API integration |
+| Student 3 | Almukhammed | Mobile app: UI, photo capture/upload, API integration |
 | Supervisor | Akerke Akanova | Scientific and organisational supervision; academic title and contact TODO |
 
 Student surnames and emails: TODO(team).
