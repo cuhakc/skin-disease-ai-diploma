@@ -1,6 +1,6 @@
 # 07 — UX prototype
 
-**Status:** 5 screens described in text; Figma prototype not yet linked. **Do not invent a Figma URL or user-test results.**
+**Status:** 5 screens described in text and drafted as static mockups in `docs/ux/` (PNG + editable SVG). No Figma file linked yet. **Do not invent a Figma URL or user-test results.**
 
 **Assessment use:** prototype of the user journey (photo → result → specialist recommendation).
 
@@ -12,11 +12,15 @@
 
 ## Prototype link
 
-TODO(Amantay): Figma (or other) URL
+Static mockups (exported PNG): `docs/ux/` — overview in `docs/ux/overview.png`. Editable sources: `docs/ux/src/*.svg` (can be imported into Figma by drag-and-drop).
+
+Figma (or other) URL: TODO(Amantay)
+
+All probabilities and class names in the mockups are placeholders ("Example class A") and are **not** model output.
 
 ## Supported languages
 
-The required UI languages are Russian (RU), Kazakh (KK), and English (EN). All screens below are described in English; translation text and review are TODO(Amantay).
+The required UI languages are Russian (RU), Kazakh (KK), and English (EN). The mockups are in English; translation text and review are TODO(Amantay).
 
 ## Intended screens (from project description)
 
@@ -41,6 +45,8 @@ The required UI languages are Russian (RU), Kazakh (KK), and English (EN). All s
 
 ### Screen 1: Login / register with consent
 
+Mockup: `docs/ux/screen-1-login-register.png`
+
 **Purpose:** let the user sign in or create an account and give informed consent before any photo is processed.
 
 **Elements:** email field, password field, "Sign in" button, "Create account" link; in registration mode a consent checkbox with a short text about how photos are processed and stored, and a link to the full privacy notice; short disclaimer: "This app provides a preliminary assessment, not a medical diagnosis."
@@ -51,13 +57,17 @@ The required UI languages are Russian (RU), Kazakh (KK), and English (EN). All s
 
 ### Screen 2: Camera and upload
 
+Mockup: `docs/ux/screen-2-camera-upload.png`
+
 **Purpose:** capture or select a photo of the skin area.
 
-**Elements:** camera preview, shutter button, gallery picker, short capture tips (good lighting, in focus, the area fills the frame), short reminder that the photo is sent for processing with a link to the privacy notice, "Continue" button after preview.
+**Elements:** camera preview with framing guide, shutter button, gallery picker, short capture tips (good lighting, in focus, the area fills the frame), short reminder that the photo is sent for processing with a link to the privacy notice, "Continue" button after preview.
 
 **States:** camera permission denied; photo too dark or blurry (warning); upload in progress; network error with retry.
 
 ### Screen 3: Result
+
+Mockup: `docs/ux/screen-3-result.png`
 
 **Purpose:** show a preliminary assessment with probabilities and clear limits.
 
@@ -66,6 +76,8 @@ The required UI languages are Russian (RU), Kazakh (KK), and English (EN). All s
 **States:** low-confidence result (stronger recommendation to see a specialist); image not recognised as skin; server error.
 
 ### Screen 4: History
+
+Mockup: `docs/ux/screen-4-history.png`
 
 **Purpose:** let the user review and delete previous assessments.
 
@@ -77,9 +89,13 @@ The required UI languages are Russian (RU), Kazakh (KK), and English (EN). All s
 
 ### Screen 5: AI limitations help
 
+Mockup: `docs/ux/screen-5-ai-limitations.png`
+
 **Purpose:** explain what the system can and cannot do.
 
-**Elements:** list of supported classes (must match the scope in docs/00-project-proposal.md), known limitations (dataset coverage, skin tones, photo quality), how to interpret probabilities, when to seek urgent care, link to the privacy notice, disclaimer: "Not treatment advice and not a diagnosis."
+**Elements:** short description of what the system does, known limitations (dataset coverage, skin tones, photo quality), how to interpret probabilities, when to seek care, link to the privacy notice, disclaimer: "Not a diagnosis. Not treatment advice."
+
+**Notes:** the list of supported classes must match the scope in docs/00-project-proposal.md; add it to this screen once the scope is fixed (TODO).
 
 ## Prototype review log
 
