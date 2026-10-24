@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="DejaVu Sans, Arial, sans-serif"><rect width="390" height="844" fill="#F3F6F4"/>
+<text x="24" y="34" font-size="13" font-weight="bold" fill="#14282B" text-anchor="start">9:41</text>
+<rect x="318" y="24" width="32" height="12" rx="3" fill="none" stroke="#14282B" stroke-width="1.2"/>
+<rect x="320" y="26" width="22" height="8" rx="2" fill="#14282B"/>
+<text x="24" y="84" font-size="20" font-weight="bold" fill="#14282B" text-anchor="start">Preliminary result</text>
+<rect x="24" y="104" width="342" height="24" rx="6" fill="#D5E8E6"/>
+<text x="36" y="121" font-size="11.5" font-weight="normal" fill="#0F5C63" text-anchor="start">Mockup: example values, not real model output</text>
+<rect x="24" y="144" width="110" height="110" rx="14" fill="#CFC2B4"/>
+<text x="79" y="205" font-size="11.5" font-weight="normal" fill="#6B5E50" text-anchor="middle">Your photo</text>
+<text x="150" y="166" font-size="12" font-weight="normal" fill="#566A6D" text-anchor="start">Most likely match</text>
+<text x="150" y="194" font-size="17" font-weight="bold" fill="#14282B" text-anchor="start">Example class A</text>
+<text x="150" y="218" font-size="12.5" font-weight="normal" fill="#566A6D" text-anchor="start">62% estimated probability</text>
+<text x="150" y="242" font-size="12" font-weight="bold" fill="#8A5A00" text-anchor="start">Low-medium confidence</text>
+<text x="24" y="292" font-size="13" font-weight="normal" fill="#14282B" text-anchor="start">Example class A</text>
+<text x="366" y="292" font-size="13" font-weight="bold" fill="#14282B" text-anchor="end">62%</text>
+<rect x="24" y="301" width="342" height="10" rx="5" fill="#D5E8E6"/>
+<rect x="24" y="301" width="212.04" height="10" rx="5" fill="#0F5C63"/>
+<text x="24" y="342" font-size="13" font-weight="normal" fill="#14282B" text-anchor="start">Example class B</text>
+<text x="366" y="342" font-size="13" font-weight="bold" fill="#14282B" text-anchor="end">24%</text>
+<rect x="24" y="351" width="342" height="10" rx="5" fill="#D5E8E6"/>
+<rect x="24" y="351" width="82.08" height="10" rx="5" fill="#0F5C63"/>
+<text x="24" y="392" font-size="13" font-weight="normal" fill="#14282B" text-anchor="start">Example class C</text>
+<text x="366" y="392" font-size="13" font-weight="bold" fill="#14282B" text-anchor="end">9%</text>
+<rect x="24" y="401" width="342" height="10" rx="5" fill="#D5E8E6"/>
+<rect x="24" y="401" width="30.78" height="10" rx="5" fill="#0F5C63"/>
+<text x="24" y="462" font-size="12.5" font-weight="normal" fill="#566A6D" text-anchor="start">The model compares your photo with images it was</text>
+<text x="24" y="481" font-size="12.5" font-weight="normal" fill="#566A6D" text-anchor="start">trained on. It cannot see your history, other</text>
+<text x="24" y="500" font-size="12.5" font-weight="normal" fill="#566A6D" text-anchor="start">symptoms, or how the spot has changed.</text>
+<rect x="24" y="538" width="342" height="92" rx="14" fill="#FFFFFF" stroke="#0F5C63" stroke-width="1.8"/>
+<text x="42" y="566" font-size="15" font-weight="bold" fill="#0F5C63" text-anchor="start">See a specialist</text>
+<text x="42" y="590" font-size="12" font-weight="normal" fill="#14282B" text-anchor="start">Show this result to a dermatologist or</text>
+<text x="42" y="608" font-size="12" font-weight="normal" fill="#14282B" text-anchor="start">family doctor, especially if the spot changes.</text>
+<rect x="24" y="652" width="342" height="58" rx="10" fill="#FFF1CC"/>
+<rect x="24" y="652" width="5" height="58" rx="2" fill="#C98A00"/>
+<text x="42" y="676" font-size="12.5" font-weight="bold" fill="#5E4200" text-anchor="start">This is not a diagnosis.</text>
+<text x="42" y="695" font-size="11.5" font-weight="normal" fill="#5E4200" text-anchor="start">Do not use it to decide on treatment.</text>
+<rect x="24" y="740" width="342" height="50" rx="12" fill="none" stroke="#0F5C63" stroke-width="1.5"/>
+<text x="195" y="770.0" font-size="15" font-weight="bold" fill="#0F5C63" text-anchor="middle">Save to history</text></svg>

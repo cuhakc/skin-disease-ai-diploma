@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="DejaVu Sans, Arial, sans-serif"><rect width="390" height="844" fill="#F3F6F4"/>
+<text x="24" y="34" font-size="13" font-weight="bold" fill="#14282B" text-anchor="start">9:41</text>
+<rect x="318" y="24" width="32" height="12" rx="3" fill="none" stroke="#14282B" stroke-width="1.2"/>
+<rect x="320" y="26" width="22" height="8" rx="2" fill="#14282B"/>
+<text x="24" y="92" font-size="26" font-weight="bold" fill="#0F5C63" text-anchor="start">Skin check</text>
+<text x="24" y="118" font-size="13" font-weight="normal" fill="#566A6D" text-anchor="start">Preliminary assessment from a photo</text>
+<text x="24" y="176" font-size="20" font-weight="bold" fill="#14282B" text-anchor="start">Create your account</text>
+<text x="24" y="200" font-size="12.5" font-weight="bold" fill="#566A6D" text-anchor="start">Email</text>
+<rect x="24" y="210" width="342" height="48" rx="10" fill="#FFFFFF" stroke="#C5D4D1" stroke-width="1"/>
+<text x="40" y="240" font-size="14" font-weight="normal" fill="#8A9A9C" text-anchor="start">name@example.com</text>
+<text x="24" y="284" font-size="12.5" font-weight="bold" fill="#566A6D" text-anchor="start">Password</text>
+<rect x="24" y="294" width="342" height="48" rx="10" fill="#FFFFFF" stroke="#C5D4D1" stroke-width="1"/>
+<text x="40" y="324" font-size="14" font-weight="normal" fill="#8A9A9C" text-anchor="start">At least 8 characters</text>
+<rect x="24" y="374" width="22" height="22" rx="6" fill="#FFFFFF" stroke="#0F5C63" stroke-width="2"/>
+<path d="M29 385 l5 5 l9 -10" stroke="#0F5C63" stroke-width="2.5" fill="none"/>
+<text x="58" y="386" font-size="12.5" font-weight="normal" fill="#14282B" text-anchor="start">I agree that my photos are sent for processing</text>
+<text x="58" y="404" font-size="12.5" font-weight="normal" fill="#14282B" text-anchor="start">and stored as described in the privacy notice.</text>
+<text x="58" y="428" font-size="12.5" font-weight="bold" fill="#0F5C63" text-anchor="start">Read privacy notice</text>
+<line x1="58" y1="432" x2="178" y2="432" stroke="#0F5C63" stroke-width="1.2"/>
+<rect x="24" y="458" width="342" height="50" rx="12" fill="#0F5C63"/>
+<text x="195" y="488.0" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Create account</text>
+<text x="195" y="538" font-size="13.5" font-weight="bold" fill="#0F5C63" text-anchor="middle">Already have an account? Sign in</text>
+<rect x="24" y="740" width="342" height="58" rx="10" fill="#FFF1CC"/>
+<rect x="24" y="740" width="5" height="58" rx="2" fill="#C98A00"/>
+<text x="42" y="764" font-size="12.5" font-weight="bold" fill="#5E4200" text-anchor="start">This app is not a medical diagnosis.</text>
+<text x="42" y="783" font-size="11.5" font-weight="normal" fill="#5E4200" text-anchor="start">It gives a preliminary assessment only.</text></svg>
