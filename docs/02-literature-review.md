@@ -1,12 +1,12 @@
 # 02 — Literature review
 
-**Status:** first complete draft; 12 sources verified against publisher or repository pages on 24 October 2026. Remaining TODOs: 2–3 additional scientific sources from 2024–2026, legal check of Law 94-V, and a final read-through of the table against the sources.
+**Status:** first complete draft; 12 sources verified against publisher or repository pages on 24 October 2026, and two AI-module sources ([13], [14]) added and checked against their publisher or PMC pages on the same date. Remaining TODOs: sources from Amantai (mHealth/trust) and Sultan (data protection), legal check of Law 94-V, and a final read-through of the table against the sources.
 
 **Assessment use:** review of dermatological image-classification methods and constraints relevant to a mobile decision-support application. This project does not present the output as a medical diagnosis.
 
 ## Scope and search note
 
-Sources were found through web searches on 24 October 2026 and selected by topic relevance, without a formal systematic protocol. The review is limited to references [1]–[12].
+Sources were found through web searches on 24 October 2026 and selected by topic relevance, without a formal systematic protocol. The review is limited to references [1]–[14].
 
 ## Analysis table
 
@@ -24,6 +24,8 @@ Sources were found through web searches on 24 October 2026 and selected by topic
 | 10 | Naqvi et al. [10] | 2023 | scientific | Deep learning for skin-cancer classification | Review of recent deep-learning work, common models, and datasets. | Provides an overview of models and datasets used in the reviewed work. | Focused on skin cancer. | Background for model and dataset selection. |
 | 11 | Nugroho et al. [11] | 2024 | scientific | Deep learning on dermoscopic skin-lesion images | Systematic literature review describing preprocessing, segmentation, feature extraction, and classification. | Summarizes a pipeline used in the reviewed classification work. | Focused on dermoscopy. | Pipeline overview for the AI module. |
 | 12 | Republic of Kazakhstan, Law No. 94-V [12] | 2013 (as amended) | other | Personal-data protection | Law regulating collection, processing, and protection of personal data. | The law states that the storage period is determined by achievement of the purposes of collection and processing, and that confidentiality of biometric data is set by legislation. | Applicability to skin photographs has not been assessed; legal check with supervisor is TODO. | Relevant to consent, retention, and deletion decisions. |
+| 13 | Ray, Sarkar, Schwenker, and Sarkar [13] | 2024 | scientific | Survey of skin-cancer classification methods | Survey of 107 papers over 18 years: datasets (HAM10000, ISIC archive and others), classical ML, CNNs, transfer learning, attention, ensembles, transformers, hybrid and multimodal methods. | CNN-based papers made up over 70% of the surveyed deep-learning work. The survey notes that pretrained natural-image models face a domain shift on dermoscopic images, so fine-tuning is needed, and that attention-based models add computational cost. Handcrafted-feature systems depend on feature quality and generalize poorly across datasets. | A survey: no experiments of its own; dermoscopy and skin cancer focus. | Supports the choice of a fine-tuned CNN, informs dataset limits and the compute trade-off (`docs/04`, `docs/08`). |
+| 14 | Tjiu and Lu [14] | 2025 | scientific | Equity and generalizability of dermatology AI | Systematic review and meta-analysis of 18 studies (clinical, dermoscopic and smartphone images), search up to 31 October 2025. | Pooled AUROC was 0.88. By setting, AUROC was 0.90 in specialist, 0.85 in community and 0.81 in smartphone environments. By skin tone, AUROC was 0.89 for Fitzpatrick I–III and 0.82 for IV–VI. The authors call for diverse data, skin-tone-stratified reporting and external validation. | Single-source MDPI review; only 6 of 18 studies had complete 2×2 data; heterogeneous settings. Cite headline findings only. | Motivates the phone-photo check and skin-tone-stratified reporting in `docs/08` and cautious wording in `docs/00`. |
 
 ## Critical synthesis
 
@@ -39,15 +41,17 @@ Sources were found through web searches on 24 October 2026 and selected by topic
 
 (f) The WHO guidance supplies ethical principles for autonomy, safety, transparency, accountability, equity, and sustainability [8]. Kazakhstan’s personal-data law is relevant to collection, processing, retention, and confidentiality, but its applicability to skin photographs still requires a legal check [12].
 
+(g) Two 2024–2025 reviews add to this picture. A survey of 107 papers reports that CNNs dominate skin-lesion classification, that pretrained natural-image models need fine-tuning because of domain shift, and that attention-based models add computation [13]. A meta-analysis of 18 studies reports lower AUROC in smartphone settings (0.81) than in specialist settings (0.90) and lower AUROC for Fitzpatrick IV–VI (0.82) than for I–III (0.89) [14]. Both support a fine-tuned compact CNN as a baseline to be tested, and an explicit evaluation on phone photos and by skin tone. Neither establishes the performance of this project.
+
 ## Gaps and positioning of this project
 
 The project is positioned as preliminary decision support with class probabilities, a specialist-referral recommendation, and a medical disclaimer. Explainability and privacy-preserving deployment are options to evaluate, not demonstrated capabilities: Grad-CAM has coarse localization [2], and on-device versus server inference remains a project decision. No diagnostic-accuracy claim is made before the project’s own evaluation. The cited app review also cautions against relying on consumer apps to detect all skin cancers [6].
 
 ## Requirements check
 
-- Source count: 12 total; 10 scientific sources ([1]–[7], [9]–[11]).
-- Sources dated 2021 or later are [7]–[11]; [12] is the current amended legal text, but its current-version date is TODO. Of the 10 scientific sources, 4 ([7], [9]–[11]) are dated 2021 or later by the year labels. Earlier scientific sources are foundational.
-- TODO(team): add 2–3 scientific sources dated 2024–2026. Topic-owner proposals: AI module topics — Arman; mobile/mHealth trust — Amantai; security/data protection — Sultan.
+- Source count: 14 total; 12 scientific sources ([1]–[7], [9]–[11], [13], [14]).
+- Sources dated 2021 or later are [7]–[11], [13] and [14]; [12] is the current amended legal text, but its current-version date is TODO. Of the 12 scientific sources, 6 ([7], [9]–[11], [13], [14]) are dated 2021 or later by the year labels. Earlier scientific sources are foundational.
+- Scientific sources dated 2024–2026: [11], [13], [14]. The AI-module sources are added ([13], [14] by Arman). TODO(Amantai): 1–2 mobile/mHealth trust sources (numbers from [15]). TODO(Sultan): security/data-protection sources.
 - All 12 references have a DOI or an official URL; volume and page details are given where the publisher provides them.
 
 ## IEEE reference list
@@ -64,13 +68,15 @@ The project is positioned as preliminary decision support with class probabiliti
 [10] M. Naqvi, S. Q. Gilani, T. Syed, O. Marques, and H.-C. Kim, "Skin cancer detection using deep learning—A review," Diagnostics, vol. 13, no. 11, Art. no. 1911, 2023, doi: 10.3390/diagnostics13111911.
 [11] A. K. Nugroho, R. Wardoyo, M. E. Wibowo, and H. Soebono, "Image dermoscopy skin lesion classification using deep learning method: systematic literature review," Bull. Electr. Eng. Inform., vol. 13, no. 2, pp. 1042–1049, 2024, doi: 10.11591/eei.v13i2.6077.
 [12] Law of the Republic of Kazakhstan No. 94-V, "On personal data and their protection," May 21, 2013 (as amended). [Online]. Available: https://adilet.zan.kz/rus/docs/Z1300000094. Accessed: Oct. 24, 2026.
+[13] A. Ray, S. Sarkar, F. Schwenker, and R. Sarkar, "Decoding skin cancer classification: perspectives, insights, and advances through researchers' lens," Sci. Rep., vol. 14, Art. no. 30542, 2024, doi: 10.1038/s41598-024-81961-3.
+[14] J.-W. Tjiu and C.-F. Lu, "Equity and generalizability of artificial intelligence for skin-lesion diagnosis using clinical, dermoscopic, and smartphone images: A systematic review and meta-analysis," Medicina, vol. 61, no. 12, Art. no. 2186, 2025, doi: 10.3390/medicina61122186.
 
 ### Reading and verification owner proposal
 
 | Reading / verification assignment | Owner | Status |
 |-----------------------------------|-------|--------|
 | Verify full metadata and relevance for existing references [1]–[12] | TODO | TODO |
-| Additional AI module sources | Arman | TODO: confirm assignment and sources |
+| Additional AI module sources | Arman | Done: [13], [14]; title, authors, year and DOI checked against the PMC and MDPI pages on 24 Oct 2026 |
 | Additional mobile/mHealth trust sources | Amantai | TODO: confirm assignment and sources |
 | Additional security/data-protection sources | Sultan | TODO: confirm assignment and sources |
 
